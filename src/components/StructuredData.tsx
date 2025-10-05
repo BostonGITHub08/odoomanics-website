@@ -12,7 +12,7 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
           "@type": "Organization",
           "name": "OdooManics",
           "url": "https://odoomanics.com",
-          "logo": "https://odoomanics.com/_assets/logo.png",
+          "logo": "https://odoomanics.com/logo.png",
           "sameAs": [
             "https://linkedin.com/company/odoomanics",
             "https://twitter.com/odoomanics"
@@ -206,7 +206,7 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
             "name": "OdooManics",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://odoomanics.com/_assets/logo.png"
+              "url": "https://odoomanics.com/logo.png"
             }
           },
           "datePublished": data.datePublished,

@@ -61,10 +61,14 @@ const Header = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-light rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">OM</span>
-              </div>
-              <span className="text-2xl font-bold text-primary">OdooManics</span>
+              <Image
+                src="/logo.png"
+                alt="OdooManics Logo"
+                width={120}
+                height={40}
+                className="h-10 w-auto"
+                priority
+              />
             </Link>
           </div>
 

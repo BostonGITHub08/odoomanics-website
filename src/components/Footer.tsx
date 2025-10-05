@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -70,11 +71,14 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
             {/* Company Info */}
             <div className="lg:col-span-2">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-light rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-xl">OM</span>
-                </div>
-                <span className="text-2xl font-bold">OdooManics</span>
+              <div className="mb-6">
+                <Image
+                  src="/logo.png"
+                  alt="OdooManics Logo"
+                  width={150}
+                  height={50}
+                  className="h-12 w-auto"
+                />
               </div>
               <p className="text-gray-300 mb-6 max-w-md">
                 Expert Odoo implementation, customization, and managed hosting. 
