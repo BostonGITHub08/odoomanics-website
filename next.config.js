@@ -6,7 +6,7 @@ const nextConfig = {
     unoptimized: true
   },
   env: {
-    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID || '',
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://odoomanics.com'
   }
 }
