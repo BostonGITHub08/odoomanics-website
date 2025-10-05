@@ -1,0 +1,17 @@
+# OdooManics Logo Placeholder
+
+## Instructions:
+1. Replace this file with the actual OdooManics logo
+2. Supported formats: PNG, SVG, JPG
+3. Recommended dimensions: 200x60px for header, 400x120px for footer
+4. Ensure logo has transparent background for best results
+
+## File naming convention:
+- logo.png (main logo)
+- logo-white.png (white version for dark backgrounds)
+- favicon.ico (16x16, 32x32, 48x48 sizes)
+
+## Usage in components:
+- Header: src/components/Header.tsx (line ~15)
+- Footer: src/components/Footer.tsx (line ~15)
+- Structured Data: src/components/StructuredData.tsx (line ~30)
