@@ -110,7 +110,7 @@ export async function GET(): Promise<Response> {
     ...staticRoutes.map(route => ({
       url: `${baseUrl}${route}`,
       lastModified: new Date(),
-      changeFrequency: route === '' ? 'daily' : 'weekly',
+      changeFrequency: (route === '' ? 'daily' : 'weekly') as 'daily' | 'weekly',
       priority: route === '' ? 1 : 0.8
     })),
     ...moduleRoutes.map(module => ({
