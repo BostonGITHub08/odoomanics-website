@@ -49,8 +49,6 @@ const Header = () => {
     },
     { name: 'Integrations', href: '/integrations' },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Case Studies', href: '/case-studies' },
-    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ]
 
@@ -110,7 +108,7 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link href="/contact" className="btn-primary">
+            <Link href="/contact" className="btn-primary whitespace-nowrap">
               Book Free Consultation
             </Link>
           </div>
@@ -162,7 +160,7 @@ const Header = () => {
                 </div>
               ))}
               <div className="pt-4 border-t border-gray-200">
-                <Link href="/contact" className="btn-primary w-full text-center block">
+                <Link href="/contact" className="btn-primary w-full text-center block whitespace-nowrap">
                   Book Free Consultation
                 </Link>
               </div>
