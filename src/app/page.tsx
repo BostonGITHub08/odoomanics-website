@@ -11,11 +11,12 @@ import CTA from '@/components/sections/CTA'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Odoo Implementations & Managed Support—From Discovery to Go-Live',
-  description: 'We scope, implement, migrate, and support Odoo for Manufacturing, Retail, eCommerce, Services & more. Expert implementation across Pakistan, USA, and Saudi Arabia.',
+  title: 'Odoo Implementation Saudi Arabia | Riyadh & Dammam | OdooManics',
+  description: 'Expert Odoo ERP implementation in Saudi Arabia. Serving Riyadh, Dammam, and Jeddah with Manufacturing, Retail, eCommerce solutions. Certified Odoo partners with local offices.',
+  keywords: ['Odoo Saudi Arabia', 'Odoo Riyadh', 'Odoo Dammam', 'Odoo implementation KSA', 'ERP Saudi Arabia', 'Manufacturing ERP', 'Retail ERP', 'Odoo customization', 'Odoo hosting'],
   openGraph: {
-    title: 'OdooManics - Odoo Implementations & Managed Support',
-    description: 'We scope, implement, migrate, and support Odoo for Manufacturing, Retail, eCommerce, Services & more. Expert implementation across Pakistan, USA, and Saudi Arabia.',
+    title: 'Odoo Implementation Saudi Arabia | Riyadh & Dammam | OdooManics',
+    description: 'Expert Odoo ERP implementation in Saudi Arabia. Serving Riyadh, Dammam, and Jeddah with Manufacturing, Retail, eCommerce solutions. Certified Odoo partners.',
     images: ['https://odoomanics.com/_assets/og-home.png'],
   },
 }

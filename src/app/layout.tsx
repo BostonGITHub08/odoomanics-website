@@ -4,6 +4,8 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import KSASEOOptimization from '@/components/KSASEOOptimization'
+import PerformanceOptimizations from '@/components/PerformanceOptimizations'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,8 +14,8 @@ export const metadata: Metadata = {
     default: 'OdooManics - Odoo Implementation & Managed Support',
     template: '%s | OdooManics'
   },
-  description: 'Expert Odoo implementation, customization, and managed hosting. From discovery to go-live for Manufacturing, Retail, eCommerce, and Services. Pakistan, USA, KSA offices.',
-  keywords: ['Odoo', 'ERP', 'implementation', 'customization', 'hosting', 'Pakistan', 'USA', 'KSA'],
+  description: 'Expert Odoo implementation, customization, and managed hosting in Saudi Arabia. From discovery to go-live for Manufacturing, Retail, eCommerce, and Services. Offices in Riyadh, Dammam, Pakistan, and USA.',
+  keywords: ['Odoo Saudi Arabia', 'Odoo Riyadh', 'Odoo Dammam', 'Odoo implementation KSA', 'ERP Saudi Arabia', 'Odoo customization', 'Odoo hosting', 'Manufacturing ERP', 'Retail ERP', 'Pakistan', 'USA'],
   authors: [{ name: 'OdooManics' }],
   creator: 'OdooManics',
   publisher: 'OdooManics',
@@ -64,10 +66,16 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <head>
         <GoogleAnalytics />
+        <KSASEOOptimization />
+        <PerformanceOptimizations />
         <link rel="canonical" href="https://odoomanics.com" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="geo.region" content="SA" />
+        <meta name="geo.placename" content="Riyadh, Dammam" />
+        <meta name="geo.position" content="24.7136;46.6753" />
+        <meta name="ICBM" content="24.7136, 46.6753" />
       </head>
       <body className={inter.className}>
         <Header />

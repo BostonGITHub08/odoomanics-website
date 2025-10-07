@@ -17,7 +17,8 @@ export async function GET(): Promise<Response> {
     '/legal/privacy',
     '/legal/terms',
     '/odoo-modules',
-    '/integrations'
+    '/integrations',
+    '/ksa'
   ]
 
   const moduleRoutes = [

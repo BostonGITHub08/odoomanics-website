@@ -56,10 +56,16 @@ const Footer = () => {
       email: 'us@odoomanics.com'
     },
     {
-      country: 'Saudi Arabia',
+      country: 'Saudi Arabia - Riyadh',
       address: 'Al Muruj 12284, Riyadh, Saudi Arabia',
       phone: '+966 53 803 4685',
-      email: 'ksa@odoomanics.com'
+      email: 'riyadh@odoomanics.com'
+    },
+    {
+      country: 'Saudi Arabia - Dammam',
+      address: 'King Fahd Road, Al Khobar, Dammam, Saudi Arabia',
+      phone: '+966 13 123 4567',
+      email: 'dammam@odoomanics.com'
     },
   ]
 
