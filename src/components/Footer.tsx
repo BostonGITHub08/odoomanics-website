@@ -64,7 +64,7 @@ const Footer = () => {
     {
       country: 'Saudi Arabia - Dammam',
       address: 'King Fahd Road, Al Khobar, Dammam, Saudi Arabia',
-      phone: '+966 13 123 4567',
+      phone: '+966 53 803 4685',
       email: 'dammam@odoomanics.com'
     },
   ]

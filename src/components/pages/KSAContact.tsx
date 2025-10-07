@@ -38,7 +38,7 @@ const KSAContact = () => {
                 </h4>
                 <div className="space-y-2 text-gray-600">
                   <p><strong>Address:</strong> King Fahd Road, Al Khobar, Dammam, Saudi Arabia</p>
-                  <p><strong>Phone:</strong> <a href="tel:+966131234567" className="text-primary hover:underline">+966 13 123 4567</a></p>
+                  <p><strong>Phone:</strong> <a href="tel:+966538034685" className="text-primary hover:underline">+966 53 803 4685</a></p>
                   <p><strong>Email:</strong> <a href="mailto:dammam@odoomanics.com" className="text-primary hover:underline">dammam@odoomanics.com</a></p>
                   <p><strong>Hours:</strong> Sunday - Thursday, 9:00 AM - 6:00 PM</p>
                 </div>

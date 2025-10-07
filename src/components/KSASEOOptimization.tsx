@@ -36,7 +36,7 @@ const KSASEOOptimization = () => {
       },
       {
         "@type": "ContactPoint",
-        "telephone": "+966-13-123-4567",
+        "telephone": "+966-53-803-4685",
         "contactType": "sales",
         "areaServed": ["Riyadh", "Dammam", "Jeddah"],
         "availableLanguage": ["English", "Arabic"]

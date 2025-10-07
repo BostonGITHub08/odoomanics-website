@@ -12,7 +12,7 @@ const ksaLocations = [
   {
     city: 'Dammam',
     address: 'King Fahd Road, Al Khobar, Dammam, Saudi Arabia',
-    phone: '+966 13 123 4567',
+    phone: '+966 53 803 4685',
     email: 'dammam@odoomanics.com',
     coordinates: { lat: 26.4207, lng: 50.0888 },
     services: ['Manufacturing', 'Oil & Gas', 'Logistics', 'Retail', 'Services'],
