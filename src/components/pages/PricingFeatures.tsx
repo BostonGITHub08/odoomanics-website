@@ -3,7 +3,7 @@ const additionalServices = [
     icon: '🔧',
     title: 'Additional Modules',
     description: 'Need more modules beyond your plan?',
-    price: 'SAR 350',
+    price: 'SAR 3,500',
     unit: 'per module',
     features: [
       'Full module implementation',
@@ -16,7 +16,7 @@ const additionalServices = [
     icon: '💾',
     title: 'Extended Storage',
     description: 'Upgrade your storage capacity',
-    price: 'SAR 50',
+    price: 'SAR 500',
     unit: 'per GB/month',
     features: [
       'Additional database storage',
@@ -42,7 +42,7 @@ const additionalServices = [
     icon: '🔌',
     title: 'Custom Integrations',
     description: 'Connect with third-party systems',
-    price: 'SAR 800',
+    price: 'SAR 8,000',
     unit: 'per integration',
     features: [
       'API development',
@@ -55,7 +55,7 @@ const additionalServices = [
     icon: '🎨',
     title: 'Custom Development',
     description: 'Tailored features for your business',
-    price: 'SAR 1,200',
+    price: 'SAR 12,000',
     unit: 'starting from',
     features: [
       'Custom module development',
@@ -68,7 +68,7 @@ const additionalServices = [
     icon: '📞',
     title: 'Extended Support',
     description: 'Ongoing maintenance and support',
-    price: 'SAR 250',
+    price: 'SAR 2,500',
     unit: 'per month',
     features: [
       '24/7 priority support',

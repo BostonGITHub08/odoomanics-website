@@ -114,7 +114,7 @@ const PricingStructuredData = () => {
         "name": "Can I add more modules later?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes! You can add additional modules at any time for SAR 350 per module. This includes full implementation, configuration, integration with existing modules, and user training."
+          "text": "Yes! You can add additional modules at any time for SAR 3,500 per module. This includes full implementation, configuration, integration with existing modules, and user training."
         }
       },
       {
