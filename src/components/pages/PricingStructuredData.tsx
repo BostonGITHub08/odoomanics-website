@@ -42,7 +42,7 @@ const PricingStructuredData = () => {
           "@type": "Offer",
           "name": "Charlie Plan - Small Business",
           "description": "Perfect for small businesses with 6 standard Odoo modules, complete implementation, and hosting included.",
-          "price": "45000",
+          "price": "4500",
           "priceCurrency": "SAR",
           "availability": "https://schema.org/InStock",
           "itemOffered": {
@@ -55,7 +55,7 @@ const PricingStructuredData = () => {
           "@type": "Offer",
           "name": "Bravo Plan - Medium Business",
           "description": "Ideal for medium-sized businesses with 10 standard Odoo modules, advanced customization, and priority support.",
-          "price": "85000",
+          "price": "8500",
           "priceCurrency": "SAR",
           "availability": "https://schema.org/InStock",
           "itemOffered": {
@@ -68,7 +68,7 @@ const PricingStructuredData = () => {
           "@type": "Offer",
           "name": "Alpha Plan - Large Business",
           "description": "Enterprise solution for large businesses with 20 standard Odoo modules, unlimited users, and dedicated support.",
-          "price": "150000",
+          "price": "15000",
           "priceCurrency": "SAR",
           "availability": "https://schema.org/InStock",
           "itemOffered": {
@@ -114,7 +114,7 @@ const PricingStructuredData = () => {
         "name": "Can I add more modules later?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes! You can add additional modules at any time for SAR 3,500 per module. This includes full implementation, configuration, integration with existing modules, and user training."
+          "text": "Yes! You can add additional modules at any time for SAR 350 per module. This includes full implementation, configuration, integration with existing modules, and user training."
         }
       },
       {

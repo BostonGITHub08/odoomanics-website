@@ -21,7 +21,7 @@ const faqs = [
   },
   {
     question: 'Can I add more modules later?',
-    answer: 'Yes! You can add additional modules at any time for SAR 3,500 per module. This includes full implementation, configuration, integration with existing modules, and user training.'
+    answer: 'Yes! You can add additional modules at any time for SAR 350 per module. This includes full implementation, configuration, integration with existing modules, and user training.'
   },
   {
     question: 'What is the implementation timeline?',
@@ -33,11 +33,11 @@ const faqs = [
   },
   {
     question: 'What happens after the post-launch support period ends?',
-    answer: 'After the included post-launch support period, you can opt for our Extended Support package at SAR 2,500/month, which includes 24/7 priority support, monthly health checks, performance optimization, and regular updates. Alternatively, you can contact us on a pay-per-incident basis.'
+    answer: 'After the included post-launch support period, you can opt for our Extended Support package at SAR 250/month, which includes 24/7 priority support, monthly health checks, performance optimization, and regular updates. Alternatively, you can contact us on a pay-per-incident basis.'
   },
   {
     question: 'Can I upgrade my plan later?',
-    answer: 'Yes, you can upgrade to a higher plan at any time. We will credit your initial payment and you only pay the difference. For example, if you start with Charlie and want to upgrade to Bravo, you pay SAR 40,000 (the difference).'
+    answer: 'Yes, you can upgrade to a higher plan at any time. We will credit your initial payment and you only pay the difference. For example, if you start with Charlie and want to upgrade to Bravo, you pay SAR 4,000 (the difference).'
   },
   {
     question: 'Do you provide training for our team?',
@@ -45,7 +45,7 @@ const faqs = [
   },
   {
     question: 'What if we need custom features not available in standard Odoo?',
-    answer: 'We offer custom development services starting from SAR 12,000. Our team can build custom modules, workflows, reports, and features tailored to your specific business requirements. Alpha Plan includes custom module development.'
+    answer: 'We offer custom development services starting from SAR 1,200. Our team can build custom modules, workflows, reports, and features tailored to your specific business requirements. Alpha Plan includes custom module development.'
   },
   {
     question: 'Is the hosting secure and reliable?',
