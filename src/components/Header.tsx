@@ -107,7 +107,7 @@ const Header = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center ml-8">
             <Link href="/contact" className="btn-primary whitespace-nowrap">
               Book Free Consultation
             </Link>
