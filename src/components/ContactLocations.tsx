@@ -6,14 +6,8 @@ const ContactLocations = () => {
       isMain: true,
       offices: [
         {
-          name: 'Pakistan HQ (Registered)',
+          name: 'Pakistan Office',
           address: '347/3B, Main Lahore – Kasur Rd, near Bhabra Market Road, Block M Gulberg III, Lahore',
-          phone: '+92 321 5999030',
-          email: 'pk@odoomanics.com'
-        },
-        {
-          name: 'Operating Office',
-          address: '347/3B, Main Lahore–Kasur Rd, near Bhabra Market Road, Block M Gulberg III, Lahore, 54000, Pakistan',
           phone: '+92 321 5999030',
           email: 'pk@odoomanics.com'
         }
