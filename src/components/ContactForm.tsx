@@ -54,13 +54,11 @@ const ContactForm = () => {
     setSubmitStatus('idle')
 
     try {
-      // Get API endpoint from environment variable
-      // For Formspree: https://formspree.io/f/YOUR_FORM_ID
-      // For custom backend: Your API URL
+      // Get API endpoint from environment variable (set in next.config.js or .env.local)
       const apiEndpoint = process.env.NEXT_PUBLIC_CONTACT_API_URL
       
       if (!apiEndpoint) {
-        throw new Error('Contact form API endpoint not configured. Please set NEXT_PUBLIC_CONTACT_API_URL environment variable.')
+        throw new Error('API endpoint not configured. Please start the backend server or set NEXT_PUBLIC_CONTACT_API_URL.')
       }
       
       const response = await fetch(apiEndpoint, {
@@ -78,13 +76,28 @@ const ContactForm = () => {
           message: formData.message,
           budget: formData.budget,
           timeline: formData.timeline,
-          _subject: `New Contact Form Submission from ${formData.name}${formData.company ? ` - ${formData.company}` : ''}`,
         }),
       })
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}))
-        throw new Error(errorData.error || 'Failed to submit form')
+        const errorText = await response.text()
+        let errorMessage = 'Failed to submit form'
+        
+        try {
+          const errorData = JSON.parse(errorText)
+          errorMessage = errorData.error || errorData.message || errorMessage
+        } catch {
+          errorMessage = errorText || errorMessage
+        }
+        
+        // More helpful error messages
+        if (response.status === 0 || response.status === 500) {
+          errorMessage = 'Backend server is not running. Please start the backend server on port 3001.'
+        } else if (response.status === 404) {
+          errorMessage = 'API endpoint not found. Please check your API URL configuration.'
+        }
+        
+        throw new Error(errorMessage)
       }
 
       const result = await response.json()
@@ -102,6 +115,10 @@ const ContactForm = () => {
     } catch (error) {
       console.error('Form submission error:', error)
       setSubmitStatus('error')
+      // Show more helpful error message
+      if (error instanceof Error) {
+        console.error('Error details:', error.message)
+      }
     } finally {
       setIsSubmitting(false)
     }
@@ -276,8 +293,12 @@ const ContactForm = () => {
 
                 {submitStatus === 'error' && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <p className="text-red-600">
-                      There was an error submitting your form. Please try again.
+                    <p className="text-red-600 font-semibold mb-2">
+                      ⚠️ There was an error submitting your form.
+                    </p>
+                    <p className="text-red-600 text-sm">
+                      Please make sure the backend server is running on port 3001. 
+                      Check the console for more details or see QUICK_START.md for setup instructions.
                     </p>
                   </div>
                 )}

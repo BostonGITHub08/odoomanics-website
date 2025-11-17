@@ -13,7 +13,11 @@ const nextConfig = {
   generateEtags: true,
   env: {
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID || 'G-HW2N3LNWTF',
-    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://odoomanics.com'
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'https://odoomanics.com',
+    // Contact form API - set in .env.local for production
+    // For local: http://localhost:3001/api/contact
+    // For production: your deployed backend URL
+    NEXT_PUBLIC_CONTACT_API_URL: process.env.NEXT_PUBLIC_CONTACT_API_URL || 'http://localhost:3001/api/contact'
   },
   async headers() {
     return [
