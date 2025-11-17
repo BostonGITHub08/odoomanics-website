@@ -43,7 +43,7 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
           "address": [
             {
               "@type": "PostalAddress",
-              "streetAddress": "8 Ghazali Park – Wahdat Road",
+              "streetAddress": "347/3B, Main Lahore – Kasur Rd, near Bhabra Market Road, Block M Gulberg III",
               "addressLocality": "Lahore",
               "postalCode": "54000",
               "addressCountry": "PK"
@@ -68,6 +68,13 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
               "streetAddress": "Al Muruj 12284",
               "addressLocality": "Riyadh",
               "addressCountry": "SA"
+            },
+            {
+              "@type": "PostalAddress",
+              "streetAddress": "128 City Road",
+              "addressLocality": "London",
+              "postalCode": "EC1V 2NX",
+              "addressCountry": "GB"
             }
           ]
         }
@@ -83,7 +90,7 @@ const StructuredData = ({ type, data }: StructuredDataProps) => {
           "email": "info@odoomanics.com",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "8 Ghazali Park – Wahdat Road",
+            "streetAddress": "347/3B, Main Lahore – Kasur Rd, near Bhabra Market Road, Block M Gulberg III",
             "addressLocality": "Lahore",
             "postalCode": "54000",
             "addressCountry": "PK"

@@ -45,7 +45,7 @@ const Footer = () => {
   const locations = [
     {
       country: 'Pakistan',
-      address: '8 Ghazali Park – Wahdat Road, Lahore, 54000, Pakistan',
+      address: '347/3B, Main Lahore – Kasur Rd, near Bhabra Market Road, Block M Gulberg III, Lahore',
       phone: '+92 321 5999030',
       email: 'pk@odoomanics.com'
     },
@@ -60,6 +60,12 @@ const Footer = () => {
       address: 'Al Muruj 12284, Riyadh, Saudi Arabia',
       phone: '+966 53 803 4685',
       email: 'ksa@odoomanics.com'
+    },
+    {
+      country: 'United Kingdom',
+      address: '128 City Road, London, United Kingdom, EC1V 2NX',
+      phone: '+44 7848 115043',
+      email: 'uk@odoomanics.com'
     },
   ]
 

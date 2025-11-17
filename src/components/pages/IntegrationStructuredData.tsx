@@ -12,7 +12,7 @@ const IntegrationStructuredData = () => {
       "address": [
         {
           "@type": "PostalAddress",
-          "streetAddress": "8 Ghazali Park – Wahdat Road",
+          "streetAddress": "347/3B, Main Lahore – Kasur Rd, near Bhabra Market Road, Block M Gulberg III",
           "addressLocality": "Lahore",
           "postalCode": "54000",
           "addressCountry": "PK"
@@ -24,6 +24,13 @@ const IntegrationStructuredData = () => {
           "addressRegion": "MA",
           "postalCode": "02148",
           "addressCountry": "US"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "128 City Road",
+          "addressLocality": "London",
+          "postalCode": "EC1V 2NX",
+          "addressCountry": "GB"
         }
       ],
       "contactPoint": [
@@ -42,7 +49,7 @@ const IntegrationStructuredData = () => {
       ]
     },
     "serviceType": "Software Integration",
-    "areaServed": ["Pakistan", "United States", "Saudi Arabia"],
+    "areaServed": ["Pakistan", "United States", "Saudi Arabia", "United Kingdom"],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Odoo Integration Services",

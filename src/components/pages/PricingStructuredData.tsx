@@ -12,7 +12,7 @@ const PricingStructuredData = () => {
       "address": [
         {
           "@type": "PostalAddress",
-          "streetAddress": "8 Ghazali Park – Wahdat Road",
+          "streetAddress": "347/3B, Main Lahore – Kasur Rd, near Bhabra Market Road, Block M Gulberg III",
           "addressLocality": "Lahore",
           "postalCode": "54000",
           "addressCountry": "PK"
@@ -30,10 +30,17 @@ const PricingStructuredData = () => {
           "addressRegion": "MA",
           "postalCode": "02148",
           "addressCountry": "US"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "128 City Road",
+          "addressLocality": "London",
+          "postalCode": "EC1V 2NX",
+          "addressCountry": "GB"
         }
       ]
     },
-    "areaServed": ["Pakistan", "Saudi Arabia", "United States"],
+    "areaServed": ["Pakistan", "Saudi Arabia", "United States", "United Kingdom"],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Odoo Implementation Plans",

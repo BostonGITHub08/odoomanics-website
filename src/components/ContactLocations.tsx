@@ -7,7 +7,7 @@ const ContactLocations = () => {
       offices: [
         {
           name: 'Pakistan HQ (Registered)',
-          address: '8 Ghazali Park – Wahdat Road, Lahore, 54000, Pakistan',
+          address: '347/3B, Main Lahore – Kasur Rd, near Bhabra Market Road, Block M Gulberg III, Lahore',
           phone: '+92 321 5999030',
           email: 'pk@odoomanics.com'
         },
@@ -42,6 +42,18 @@ const ContactLocations = () => {
           email: 'ksa@odoomanics.com'
         }
       ]
+    },
+    {
+      country: 'United Kingdom',
+      flag: '🇬🇧',
+      offices: [
+        {
+          name: 'London Office',
+          address: '128 City Road, London, United Kingdom, EC1V 2NX',
+          phone: '+44 7848 115043',
+          email: 'uk@odoomanics.com'
+        }
+      ]
     }
   ]
 
@@ -53,12 +65,12 @@ const ContactLocations = () => {
             Our Global Locations
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We're strategically positioned across three continents to serve our clients 
+            We're strategically positioned across multiple continents to serve our clients 
             with local expertise and 24/7 support.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {locations.map((location, index) => (
             <div key={index} className="card-hover">
               <div className="flex items-center space-x-3 mb-6">
