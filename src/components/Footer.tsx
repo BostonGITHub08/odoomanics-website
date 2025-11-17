@@ -59,7 +59,7 @@ const Footer = () => {
       country: 'Saudi Arabia - Riyadh',
       address: 'Al Muruj 12284, Riyadh, Saudi Arabia',
       phone: '+966 53 803 4685',
-      email: 'riyadh@odoomanics.com'
+      email: 'ksa@odoomanics.com'
     },
   ]
 

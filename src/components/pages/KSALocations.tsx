@@ -3,7 +3,7 @@ const ksaLocations = [
     city: 'Riyadh',
     address: 'Al Muruj 12284, Riyadh, Saudi Arabia',
     phone: '+966 53 803 4685',
-    email: 'riyadh@odoomanics.com',
+    email: 'ksa@odoomanics.com',
     coordinates: { lat: 24.7136, lng: 46.6753 },
     services: ['Manufacturing', 'Retail', 'Services', 'Healthcare', 'Education'],
     description: 'Our main office in Riyadh serves the capital region with comprehensive Odoo implementation services.',

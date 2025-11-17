@@ -26,7 +26,7 @@ const KSAContact = () => {
                 <div className="space-y-2 text-gray-600">
                   <p><strong>Address:</strong> Al Muruj 12284, Riyadh, Saudi Arabia</p>
                   <p><strong>Phone:</strong> <a href="tel:+966538034685" className="text-primary hover:underline">+966 53 803 4685</a></p>
-                  <p><strong>Email:</strong> <a href="mailto:riyadh@odoomanics.com" className="text-primary hover:underline">riyadh@odoomanics.com</a></p>
+                  <p><strong>Email:</strong> <a href="mailto:ksa@odoomanics.com" className="text-primary hover:underline">ksa@odoomanics.com</a></p>
                   <p><strong>Hours:</strong> Sunday - Thursday, 9:00 AM - 6:00 PM</p>
                 </div>
               </div>
