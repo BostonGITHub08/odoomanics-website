@@ -59,15 +59,20 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-3">
-              <Image
-                src="/logo.png"
-                alt="OdooManics Logo"
-                width={360}
-                height={120}
-                className="h-30 w-auto"
-                priority
-              />
+            <Link href="/" className="flex flex-col">
+              <div className="flex items-center space-x-3">
+                <Image
+                  src="/logo.png"
+                  alt="OdooManics Logo"
+                  width={360}
+                  height={120}
+                  className="h-30 w-auto"
+                  priority
+                />
+              </div>
+              <p className="text-xs md:text-sm text-gray-600 font-bold italic mt-1 leading-tight">
+                A Project of EBITDA Solution LLP
+              </p>
             </Link>
           </div>
 

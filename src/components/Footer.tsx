@@ -184,6 +184,9 @@ const Footer = () => {
               <p className="text-gray-400">
                 © {currentYear} OdooManics. All rights reserved.
               </p>
+              <p className="text-gray-300 font-bold italic text-sm">
+                A Project of EBITDA Solution LLP
+              </p>
               <div className="flex space-x-6">
                 {footerLinks.legal.map((link) => (
                   <Link
