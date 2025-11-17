@@ -294,11 +294,25 @@ const ContactForm = () => {
                 {submitStatus === 'error' && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                     <p className="text-red-600 font-semibold mb-2">
-                      ⚠️ There was an error submitting your form.
+                      ⚠️ Backend Server Not Running
                     </p>
-                    <p className="text-red-600 text-sm">
-                      Please make sure the backend server is running on port 3001. 
-                      Check the console for more details or see QUICK_START.md for setup instructions.
+                    <p className="text-red-600 text-sm mb-3">
+                      The contact form requires the backend server to be running.
+                    </p>
+                    <div className="bg-white border border-red-200 rounded p-3 mb-3">
+                      <p className="text-gray-800 font-mono text-xs mb-2">Run these commands in a terminal:</p>
+                      <code className="block text-xs text-gray-700 bg-gray-50 p-2 rounded mb-1">
+                        cd backend
+                      </code>
+                      <code className="block text-xs text-gray-700 bg-gray-50 p-2 rounded mb-1">
+                        npm install
+                      </code>
+                      <code className="block text-xs text-gray-700 bg-gray-50 p-2 rounded">
+                        npm start
+                      </code>
+                    </div>
+                    <p className="text-red-600 text-xs">
+                      📖 See <strong>HOW_TO_FIX_FORM_ERROR.md</strong> for detailed instructions.
                     </p>
                   </div>
                 )}
