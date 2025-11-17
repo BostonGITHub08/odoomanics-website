@@ -38,7 +38,7 @@ const ContactLocations = () => {
       ]
     },
     {
-      country: 'United Kingdom',
+      country: 'UK',
       flag: '🇬🇧',
       offices: [
         {

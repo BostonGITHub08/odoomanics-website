@@ -62,7 +62,7 @@ const Footer = () => {
       email: 'ksa@odoomanics.com'
     },
     {
-      country: 'United Kingdom',
+      country: 'UK',
       address: '128 City Road, London, United Kingdom, EC1V 2NX',
       phone: '+44 7848 115043',
       email: 'uk@odoomanics.com'
