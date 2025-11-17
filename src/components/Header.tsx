@@ -59,20 +59,15 @@ const Header = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex flex-col">
-              <div className="flex items-center space-x-3">
-                <Image
-                  src="/logo.png"
-                  alt="OdooManics Logo"
-                  width={360}
-                  height={120}
-                  className="h-30 w-auto"
-                  priority
-                />
-              </div>
-              <p className="text-xs md:text-sm text-gray-600 font-bold italic mt-1 leading-tight">
-                A Project of EBITDA Solution LLP
-              </p>
+            <Link href="/" className="flex items-center space-x-3">
+              <Image
+                src="/logo.png"
+                alt="OdooManics Logo"
+                width={360}
+                height={120}
+                className="h-30 w-auto"
+                priority
+              />
             </Link>
           </div>
 
@@ -113,10 +108,13 @@ const Header = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden lg:flex items-center ml-8">
+          <div className="hidden lg:flex flex-col items-end ml-8">
             <Link href="/contact" className="btn-primary whitespace-nowrap">
               Book Free Consultation
             </Link>
+            <p className="text-xs text-gray-600 font-bold italic mt-1 leading-tight">
+              A Project of EBITDA Solution LLP
+            </p>
           </div>
 
           {/* Mobile menu button */}
@@ -169,6 +167,9 @@ const Header = () => {
                 <Link href="/contact" className="btn-primary w-full text-center block whitespace-nowrap">
                   Book Free Consultation
                 </Link>
+                <p className="text-xs text-gray-600 font-bold italic mt-2 text-center">
+                  A Project of EBITDA Solution LLP
+                </p>
               </div>
             </div>
           </div>
