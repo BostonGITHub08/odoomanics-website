@@ -54,10 +54,22 @@ const ContactForm = () => {
     setSubmitStatus('idle')
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      // Get API endpoint from environment variable or use default
+      const apiEndpoint = process.env.NEXT_PUBLIC_CONTACT_API_URL || '/api/contact'
       
-      console.log('Form submitted:', formData)
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form')
+      }
+
+      const result = await response.json()
       setSubmitStatus('success')
       setFormData({
         name: '',
@@ -70,6 +82,7 @@ const ContactForm = () => {
         timeline: ''
       })
     } catch (error) {
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
