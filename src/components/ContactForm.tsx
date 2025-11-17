@@ -54,19 +54,37 @@ const ContactForm = () => {
     setSubmitStatus('idle')
 
     try {
-      // Get API endpoint from environment variable or use default
-      const apiEndpoint = process.env.NEXT_PUBLIC_CONTACT_API_URL || '/api/contact'
+      // Get API endpoint from environment variable
+      // For Formspree: https://formspree.io/f/YOUR_FORM_ID
+      // For custom backend: Your API URL
+      const apiEndpoint = process.env.NEXT_PUBLIC_CONTACT_API_URL
+      
+      if (!apiEndpoint) {
+        throw new Error('Contact form API endpoint not configured. Please set NEXT_PUBLIC_CONTACT_API_URL environment variable.')
+      }
       
       const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          modules: formData.modules,
+          message: formData.message,
+          budget: formData.budget,
+          timeline: formData.timeline,
+          _subject: `New Contact Form Submission from ${formData.name}${formData.company ? ` - ${formData.company}` : ''}`,
+        }),
       })
 
       if (!response.ok) {
-        throw new Error('Failed to submit form')
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || 'Failed to submit form')
       }
 
       const result = await response.json()
