@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "setup": "node setup-env.js",
+    "verify": "node verify-setup.js",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
