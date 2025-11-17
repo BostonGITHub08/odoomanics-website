@@ -56,7 +56,7 @@ const Header = () => {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="container-custom">
-        <div className="flex justify-center items-center py-4">
+        <div className="flex justify-center items-center py-4 relative">
           <div className="flex items-center space-x-8 lg:space-x-12">
             {/* Logo */}
             <div className="flex items-center flex-shrink-0">
@@ -121,7 +121,7 @@ const Header = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden absolute right-4">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-dark hover:text-primary transition-colors duration-200"
