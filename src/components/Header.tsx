@@ -58,7 +58,7 @@ const Header = () => {
       <nav className="container-custom">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center flex-shrink-0">
             <Link href="/" className="flex items-center space-x-3">
               <Image
                 src="/logo.png"
@@ -72,8 +72,8 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden lg:flex items-center justify-center space-x-8 flex-1">
             {navigation.map((item) => (
               <div key={item.name} className="relative group">
                 <Link
@@ -109,7 +109,7 @@ const Header = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden lg:flex flex-col items-end ml-8">
+          <div className="hidden lg:flex flex-col items-end ml-8 flex-shrink-0">
             <Link href="/contact" className="btn-primary whitespace-nowrap">
               Book Free Consultation
             </Link>
