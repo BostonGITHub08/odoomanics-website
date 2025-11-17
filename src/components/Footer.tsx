@@ -163,14 +163,14 @@ const Footer = () => {
 
           {/* Locations */}
           <div className="mt-16 pt-8 border-t border-gray-700">
-            <h3 className="text-xl font-semibold mb-8">Our Locations</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <h3 className="text-xl font-semibold mb-6">Our Locations</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {locations.map((location) => (
                 <div key={location.country} className="text-center md:text-left">
-                  <h4 className="text-lg font-semibold text-primary mb-2">{location.country}</h4>
-                  <p className="text-gray-300 mb-2">{location.address}</p>
-                  <p className="text-gray-300 mb-1">Phone: {location.phone}</p>
-                  <p className="text-gray-300">Email: {location.email}</p>
+                  <h4 className="text-sm font-semibold text-primary mb-1.5">{location.country}</h4>
+                  <p className="text-xs text-gray-300 mb-1 leading-relaxed">{location.address}</p>
+                  <p className="text-xs text-gray-300 mb-1">Phone: {location.phone}</p>
+                  <p className="text-xs text-gray-300">Email: {location.email}</p>
                 </div>
               ))}
             </div>
