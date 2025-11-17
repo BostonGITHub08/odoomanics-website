@@ -63,9 +63,9 @@ const Header = () => {
               <Image
                 src="/logo.png"
                 alt="OdooManics Logo"
-                width={360}
-                height={120}
-                className="h-30 w-auto"
+                width={540}
+                height={180}
+                className="h-[180px] w-auto"
                 priority
               />
             </Link>
