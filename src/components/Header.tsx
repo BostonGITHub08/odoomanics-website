@@ -56,66 +56,68 @@ const Header = () => {
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="container-custom">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <div className="flex items-center flex-shrink-0">
-            <Link href="/" className="flex items-center space-x-3">
-              <Image
-                src="/logo.png"
-                alt="OdooManics Logo"
-                width={259}
-                height={86}
-                className="h-[86px] w-[259px] max-w-[259px]"
-                style={{ width: '259px', height: '86px' }}
-                priority
-              />
-            </Link>
-          </div>
+        <div className="flex justify-center items-center py-4">
+          <div className="flex items-center space-x-8 lg:space-x-12">
+            {/* Logo */}
+            <div className="flex items-center flex-shrink-0">
+              <Link href="/" className="flex items-center space-x-3">
+                <Image
+                  src="/logo.png"
+                  alt="OdooManics Logo"
+                  width={259}
+                  height={86}
+                  className="h-[86px] w-[259px] max-w-[259px]"
+                  style={{ width: '259px', height: '86px' }}
+                  priority
+                />
+              </Link>
+            </div>
 
-          {/* Desktop Navigation - Centered */}
-          <div className="hidden lg:flex items-center justify-center space-x-8 flex-1">
-            {navigation.map((item) => (
-              <div key={item.name} className="relative group">
-                <Link
-                  href={item.href}
-                  className="text-dark hover:text-primary font-medium transition-colors duration-200 flex items-center space-x-1"
-                >
-                  <span>{item.name}</span>
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {navigation.map((item) => (
+                <div key={item.name} className="relative group">
+                  <Link
+                    href={item.href}
+                    className="text-dark hover:text-primary font-medium transition-colors duration-200 flex items-center space-x-1"
+                  >
+                    <span>{item.name}</span>
+                    {item.children && (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    )}
+                  </Link>
+                  
+                  {/* Dropdown Menu */}
                   {item.children && (
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  )}
-                </Link>
-                
-                {/* Dropdown Menu */}
-                {item.children && (
-                  <div className="absolute top-full left-0 w-64 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 mt-2">
-                    <div className="py-2">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.name}
-                          href={child.href}
-                          className="block px-4 py-2 text-sm text-dark hover:bg-light hover:text-primary transition-colors duration-200"
-                        >
-                          {child.name}
-                        </Link>
-                      ))}
+                    <div className="absolute top-full left-0 w-64 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 mt-2">
+                      <div className="py-2">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.name}
+                            href={child.href}
+                            className="block px-4 py-2 text-sm text-dark hover:bg-light hover:text-primary transition-colors duration-200"
+                          >
+                            {child.name}
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+                  )}
+                </div>
+              ))}
+            </div>
 
-          {/* CTA Button */}
-          <div className="hidden lg:flex flex-col items-end ml-8 flex-shrink-0">
-            <Link href="/contact" className="btn-primary whitespace-nowrap">
-              Book Free Consultation
-            </Link>
-            <p className="text-xs text-gray-600 font-bold italic mt-1 leading-tight">
-              A Project of EBITDA Solution LLP
-            </p>
+            {/* CTA Button */}
+            <div className="hidden lg:flex flex-col items-end ml-8 flex-shrink-0">
+              <Link href="/contact" className="btn-primary whitespace-nowrap">
+                Book Free Consultation
+              </Link>
+              <p className="text-xs text-gray-600 font-bold italic mt-1 leading-tight">
+                A Project of EBITDA Solution LLP
+              </p>
+            </div>
           </div>
 
           {/* Mobile menu button */}
