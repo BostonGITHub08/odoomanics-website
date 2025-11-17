@@ -63,10 +63,10 @@ const Header = () => {
               <Image
                 src="/logo.png"
                 alt="OdooManics Logo"
-                width={540}
-                height={180}
-                className="h-[180px] w-[540px] max-w-[540px]"
-                style={{ width: '540px', height: '180px' }}
+                width={324}
+                height={108}
+                className="h-[108px] w-[324px] max-w-[324px]"
+                style={{ width: '324px', height: '108px' }}
                 priority
               />
             </Link>
