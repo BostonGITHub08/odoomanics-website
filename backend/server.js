@@ -10,16 +10,23 @@ const PORT = process.env.PORT || 3001
 app.use(cors())
 app.use(express.json())
 
-// Create SMTP transporter
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASSWORD,
-  },
-})
+// Create SMTP transporter (only if SMTP is configured)
+let transporter = null
+if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
+  transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT || '587'),
+    secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASSWORD,
+    },
+  })
+  console.log('✅ SMTP configured - emails will be sent')
+} else {
+  console.log('⚠️  SMTP not configured - form submissions will be logged but emails will not be sent')
+  console.log('   To configure SMTP, create a .env file in the backend directory with SMTP settings')
+}
 
 // Contact form endpoint
 app.post('/api/contact', async (req, res) => {
@@ -99,14 +106,23 @@ Submitted at: ${new Date().toLocaleString()}
       `,
     }
 
-    await transporter.sendMail(mailOptions)
+    // Try to send emails if SMTP is configured
+    if (transporter) {
+      try {
+        await transporter.sendMail(mailOptions)
+        console.log(`✅ Email sent to ${process.env.CONTACT_EMAIL || 'info@odoomanics.com'}`)
+      } catch (emailError) {
+        console.error('⚠️  Failed to send admin email:', emailError.message)
+        // Continue even if email fails
+      }
 
-    // Send confirmation email to the user
-    const confirmationMailOptions = {
-      from: process.env.SMTP_FROM || process.env.SMTP_USER,
-      to: email,
-      subject: 'Thank you for contacting OdooManics',
-      text: `
+      // Send confirmation email to the user
+      try {
+        const confirmationMailOptions = {
+          from: process.env.SMTP_FROM || process.env.SMTP_USER,
+          to: email,
+          subject: 'Thank you for contacting OdooManics',
+          text: `
 Thank you for contacting OdooManics!
 
 We've received your inquiry and our team will get back to you within 24 hours.
@@ -122,31 +138,49 @@ If you have any urgent questions, please feel free to contact us directly:
 
 Best regards,
 The OdooManics Team
-      `.trim(),
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #714B67;">Thank you for contacting OdooManics!</h2>
-          <p>We've received your inquiry and our team will get back to you within 24 hours.</p>
-          
-          <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #333; margin-top: 0;">Your Submission Details</h3>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Company:</strong> ${company || 'Not provided'}</p>
-            <p><strong>Modules of Interest:</strong> ${modulesList}</p>
-          </div>
-          
-          <p>If you have any urgent questions, please feel free to contact us directly:</p>
-          <ul>
-            <li>Email: <a href="mailto:info@odoomanics.com">info@odoomanics.com</a></li>
-            <li>Phone: <a href="tel:+923215999030">+92 321 5999030</a></li>
-          </ul>
-          
-          <p style="margin-top: 30px;">Best regards,<br>The OdooManics Team</p>
-        </div>
-      `,
+          `.trim(),
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #714B67;">Thank you for contacting OdooManics!</h2>
+              <p>We've received your inquiry and our team will get back to you within 24 hours.</p>
+              
+              <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3 style="color: #333; margin-top: 0;">Your Submission Details</h3>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Company:</strong> ${company || 'Not provided'}</p>
+                <p><strong>Modules of Interest:</strong> ${modulesList}</p>
+              </div>
+              
+              <p>If you have any urgent questions, please feel free to contact us directly:</p>
+              <ul>
+                <li>Email: <a href="mailto:info@odoomanics.com">info@odoomanics.com</a></li>
+                <li>Phone: <a href="tel:+923215999030">+92 321 5999030</a></li>
+              </ul>
+              
+              <p style="margin-top: 30px;">Best regards,<br>The OdooManics Team</p>
+            </div>
+          `,
+        }
+        await transporter.sendMail(confirmationMailOptions)
+        console.log(`✅ Confirmation email sent to ${email}`)
+      } catch (emailError) {
+        console.error('⚠️  Failed to send confirmation email:', emailError.message)
+        // Continue even if email fails
+      }
+    } else {
+      // Log the submission if SMTP is not configured
+      console.log('\n📧 Contact Form Submission (SMTP not configured - email not sent):')
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
+      console.log(`Name: ${name}`)
+      console.log(`Email: ${email}`)
+      console.log(`Company: ${company || 'Not provided'}`)
+      console.log(`Phone: ${phone || 'Not provided'}`)
+      console.log(`Budget: ${budget || 'Not specified'}`)
+      console.log(`Timeline: ${timeline || 'Not specified'}`)
+      console.log(`Modules: ${modulesList}`)
+      console.log(`Message: ${message || 'No message provided'}`)
+      console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n')
     }
-
-    await transporter.sendMail(confirmationMailOptions)
 
     res.status(200).json({ message: 'Form submitted successfully' })
   } catch (error) {

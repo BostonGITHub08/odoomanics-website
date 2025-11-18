@@ -17,6 +17,12 @@ const ContactForm = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState<string>('')
+  
+  // Get API endpoint from environment variable
+  // In development: http://localhost:3001/api/contact
+  // In production: set NEXT_PUBLIC_CONTACT_API_URL environment variable
+  const apiEndpoint = process.env.NEXT_PUBLIC_CONTACT_API_URL || 'http://localhost:3001/api/contact'
 
   const modules = [
     'CRM & Sales',
@@ -52,15 +58,11 @@ const ContactForm = () => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
+    setErrorMessage('')
 
     try {
-      // Get API endpoint from environment variable (set in next.config.js or .env.local)
-      const apiEndpoint = process.env.NEXT_PUBLIC_CONTACT_API_URL
-      
-      if (!apiEndpoint) {
-        throw new Error('API endpoint not configured. Please start the backend server or set NEXT_PUBLIC_CONTACT_API_URL.')
-      }
-      
+      // Use the API endpoint (already set above with fallback)
+      console.log('Submitting form to:', apiEndpoint)
       const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
@@ -114,10 +116,19 @@ const ContactForm = () => {
       })
     } catch (error) {
       console.error('Form submission error:', error)
+      console.error('API Endpoint used:', apiEndpoint)
       setSubmitStatus('error')
       // Show more helpful error message
       if (error instanceof Error) {
         console.error('Error details:', error.message)
+        setErrorMessage(error.message)
+        // Check if it's a network error
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+          console.error('Network error - backend may not be reachable')
+          setErrorMessage('Cannot connect to backend server. Please ensure it is running on port 3001.')
+        }
+      } else {
+        setErrorMessage('An unexpected error occurred. Please try again.')
       }
     } finally {
       setIsSubmitting(false)
@@ -294,26 +305,37 @@ const ContactForm = () => {
                 {submitStatus === 'error' && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                     <p className="text-red-600 font-semibold mb-2">
-                      ⚠️ Backend Server Not Running
+                      ⚠️ Form Submission Failed
                     </p>
+                    {errorMessage && (
+                      <p className="text-red-600 text-sm mb-3 font-mono bg-red-100 p-2 rounded">
+                        {errorMessage}
+                      </p>
+                    )}
                     <p className="text-red-600 text-sm mb-3">
-                      The contact form requires the backend server to be running.
+                      Unable to submit the form. Please check that the backend server is running on port 3001.
                     </p>
                     <div className="bg-white border border-red-200 rounded p-3 mb-3">
-                      <p className="text-gray-800 font-mono text-xs mb-2">Run these commands in a terminal:</p>
+                      <p className="text-gray-800 font-mono text-xs mb-2">To start the backend server, run these commands:</p>
                       <code className="block text-xs text-gray-700 bg-gray-50 p-2 rounded mb-1">
                         cd backend
                       </code>
                       <code className="block text-xs text-gray-700 bg-gray-50 p-2 rounded mb-1">
                         npm install
                       </code>
-                      <code className="block text-xs text-gray-700 bg-gray-50 p-2 rounded">
+                      <code className="block text-xs text-gray-700 bg-gray-50 p-2 rounded mb-2">
                         npm start
                       </code>
+                      <p className="text-gray-600 text-xs mt-2">
+                        Then verify: <a href="http://localhost:3001/health" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">http://localhost:3001/health</a>
+                      </p>
                     </div>
-                    <p className="text-red-600 text-xs">
-                      📖 See <strong>HOW_TO_FIX_FORM_ERROR.md</strong> for detailed instructions.
-                    </p>
+                    <button
+                      onClick={() => setSubmitStatus('idle')}
+                      className="text-red-600 text-xs underline hover:text-red-700"
+                    >
+                      Dismiss this error and try again
+                    </button>
                   </div>
                 )}
 
