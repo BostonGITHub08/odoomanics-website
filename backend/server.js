@@ -1,7 +1,8 @@
 const express = require('express')
 const cors = require('cors')
 const nodemailer = require('nodemailer')
-require('dotenv').config()
+const path = require('path')
+require('dotenv').config({ path: path.join(__dirname, '.env') })
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -12,6 +13,11 @@ app.use(express.json())
 
 // Create SMTP transporter (only if SMTP is configured)
 let transporter = null
+// Debug: Log environment variables (remove in production)
+console.log('SMTP_HOST:', process.env.SMTP_HOST ? 'Set' : 'Not set')
+console.log('SMTP_USER:', process.env.SMTP_USER ? 'Set' : 'Not set')
+console.log('SMTP_PASSWORD:', process.env.SMTP_PASSWORD ? 'Set' : 'Not set')
+
 if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
   transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
