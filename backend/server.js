@@ -19,7 +19,7 @@ console.log('SMTP_USER:', process.env.SMTP_USER ? 'Set' : 'Not set')
 console.log('SMTP_PASSWORD:', process.env.SMTP_PASSWORD ? 'Set' : 'Not set')
 
 if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
-  transporter = nodemailer.createTransport({
+  const smtpConfig = {
     host: process.env.SMTP_HOST,
     port: parseInt(process.env.SMTP_PORT || '587'),
     secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
@@ -27,8 +27,20 @@ if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD)
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASSWORD,
     },
-  })
+    // Add connection timeout and retry options
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+    // Try different TLS options
+    requireTLS: true,
+    tls: {
+      rejectUnauthorized: false, // Allow self-signed certificates if needed
+    },
+  }
+  
+  transporter = nodemailer.createTransport(smtpConfig)
   console.log('✅ SMTP configured - emails will be sent')
+  console.log(`   Host: ${process.env.SMTP_HOST}:${process.env.SMTP_PORT || '587'}`)
 } else {
   console.log('⚠️  SMTP not configured - form submissions will be logged but emails will not be sent')
   console.log('   To configure SMTP, create a .env file in the backend directory with SMTP settings')
@@ -119,6 +131,8 @@ Submitted at: ${new Date().toLocaleString()}
         console.log(`✅ Email sent to ${process.env.CONTACT_EMAIL || 'info@odoomanics.com'}`)
       } catch (emailError) {
         console.error('⚠️  Failed to send admin email:', emailError.message)
+        console.error('   Error code:', emailError.code)
+        console.error('   Error command:', emailError.command)
         // Continue even if email fails
       }
 
@@ -171,6 +185,7 @@ The OdooManics Team
         console.log(`✅ Confirmation email sent to ${email}`)
       } catch (emailError) {
         console.error('⚠️  Failed to send confirmation email:', emailError.message)
+        console.error('   Error code:', emailError.code)
         // Continue even if email fails
       }
     } else {
