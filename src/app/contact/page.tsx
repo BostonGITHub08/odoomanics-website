@@ -29,8 +29,8 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <ContactLocations />
       <ContactForm />
+      <ContactLocations />
     </>
   )
 }
