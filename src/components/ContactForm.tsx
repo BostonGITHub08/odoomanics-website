@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useForm, ValidationError } from '@formspree/react'
 import Button from '@/components/ui/Button'
 
 const ContactForm = () => {
@@ -15,14 +16,24 @@ const ContactForm = () => {
     timeline: ''
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const [errorMessage, setErrorMessage] = useState<string>('')
-  
-  // Get API endpoint from environment variable
-  // In development: http://localhost:3001/api/contact
-  // In production: set NEXT_PUBLIC_CONTACT_API_URL environment variable
-  const apiEndpoint = process.env.NEXT_PUBLIC_CONTACT_API_URL || 'http://localhost:3001/api/contact'
+  // Use Formspree hook with your form ID
+  const [state, handleSubmit] = useForm('manvveal')
+
+  // Reset form when submission succeeds
+  useEffect(() => {
+    if (state.succeeded) {
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        modules: [],
+        message: '',
+        budget: '',
+        timeline: ''
+      })
+    }
+  }, [state.succeeded])
 
   const modules = [
     'CRM & Sales',
@@ -54,85 +65,9 @@ const ContactForm = () => {
     }))
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setSubmitStatus('idle')
-    setErrorMessage('')
-
-    try {
-      // Use the API endpoint (already set above with fallback)
-      console.log('Submitting form to:', apiEndpoint)
-      const response = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          phone: formData.phone,
-          modules: formData.modules,
-          message: formData.message,
-          budget: formData.budget,
-          timeline: formData.timeline,
-        }),
-      })
-
-      if (!response.ok) {
-        const errorText = await response.text()
-        let errorMessage = 'Failed to submit form'
-        
-        try {
-          const errorData = JSON.parse(errorText)
-          errorMessage = errorData.error || errorData.message || errorMessage
-        } catch {
-          errorMessage = errorText || errorMessage
-        }
-        
-        // More helpful error messages
-        if (response.status === 0 || response.status === 500) {
-          errorMessage = 'Backend server is not running. Please start the backend server on port 3001.'
-        } else if (response.status === 404) {
-          errorMessage = 'API endpoint not found. Please check your API URL configuration.'
-        }
-        
-        throw new Error(errorMessage)
-      }
-
-      const result = await response.json()
-      setSubmitStatus('success')
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        phone: '',
-        modules: [],
-        message: '',
-        budget: '',
-        timeline: ''
-      })
-    } catch (error) {
-      console.error('Form submission error:', error)
-      console.error('API Endpoint used:', apiEndpoint)
-      setSubmitStatus('error')
-      // Show more helpful error message
-      if (error instanceof Error) {
-        console.error('Error details:', error.message)
-        setErrorMessage(error.message)
-        // Check if it's a network error
-        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-          console.error('Network error - backend may not be reachable')
-          setErrorMessage('Cannot connect to backend server. Please ensure it is running on port 3001.')
-        }
-      } else {
-        setErrorMessage('An unexpected error occurred. Please try again.')
-      }
-    } finally {
-      setIsSubmitting(false)
-    }
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    // Submit to Formspree - it will automatically handle form serialization
+    handleSubmit(e)
   }
 
   return (
@@ -149,7 +84,7 @@ const ContactForm = () => {
           </div>
 
           <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12">
-            {submitStatus === 'success' ? (
+            {state.succeeded ? (
               <div className="text-center">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -160,12 +95,16 @@ const ContactForm = () => {
                 <p className="text-gray-600 mb-6">
                   We've received your inquiry and will get back to you within 24 hours.
                 </p>
-                <Button onClick={() => setSubmitStatus('idle')}>
+                <Button onClick={() => window.location.reload()}>
                   Send Another Message
                 </Button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-8">
+              <form onSubmit={onSubmit} className="space-y-8">
+                {/* Hidden inputs for Formspree */}
+                <input type="hidden" name="modules" value={formData.modules.join(', ')} />
+                <input type="hidden" name="_subject" value={`New Contact Form Submission from ${formData.name || 'Visitor'}`} />
+                
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-dark mb-2">
@@ -181,6 +120,7 @@ const ContactForm = () => {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200"
                       placeholder="Enter your full name"
                     />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} />
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-semibold text-dark mb-2">
@@ -196,6 +136,7 @@ const ContactForm = () => {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200"
                       placeholder="Enter your email"
                     />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
                   </div>
                   <div>
                     <label htmlFor="company" className="block text-sm font-semibold text-dark mb-2">
@@ -300,52 +241,31 @@ const ContactForm = () => {
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-200"
                     placeholder="Tell us about your business, current challenges, and what you hope to achieve with Odoo..."
                   />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </div>
 
-                {submitStatus === 'error' && (
+                {state.errors && state.errors.length > 0 && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                     <p className="text-red-600 font-semibold mb-2">
-                      ⚠️ Form Submission Failed
+                      ⚠️ Please fix the following errors:
                     </p>
-                    {errorMessage && (
-                      <p className="text-red-600 text-sm mb-3 font-mono bg-red-100 p-2 rounded">
-                        {errorMessage}
-                      </p>
-                    )}
-                    <p className="text-red-600 text-sm mb-3">
-                      Unable to submit the form. Please check that the backend server is running on port 3001.
-                    </p>
-                    <div className="bg-white border border-red-200 rounded p-3 mb-3">
-                      <p className="text-gray-800 font-mono text-xs mb-2">To start the backend server, run these commands:</p>
-                      <code className="block text-xs text-gray-700 bg-gray-50 p-2 rounded mb-1">
-                        cd backend
-                      </code>
-                      <code className="block text-xs text-gray-700 bg-gray-50 p-2 rounded mb-1">
-                        npm install
-                      </code>
-                      <code className="block text-xs text-gray-700 bg-gray-50 p-2 rounded mb-2">
-                        npm start
-                      </code>
-                      <p className="text-gray-600 text-xs mt-2">
-                        Then verify: <a href="http://localhost:3001/health" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">http://localhost:3001/health</a>
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => setSubmitStatus('idle')}
-                      className="text-red-600 text-xs underline hover:text-red-700"
-                    >
-                      Dismiss this error and try again
-                    </button>
+                    <ul className="list-disc list-inside text-red-600 text-sm space-y-1">
+                      {state.errors.map((error, index) => (
+                        <li key={index}>
+                          {error.field ? `${error.field}: ` : ''}{error.message}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
 
                 <div className="text-center">
                   <Button
                     type="submit"
-                    isLoading={isSubmitting}
+                    disabled={state.submitting}
                     className="w-full md:w-auto"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {state.submitting ? 'Sending...' : 'Send Message'}
                   </Button>
                   <p className="text-sm text-gray-500 mt-4">
                     We'll respond within 24 hours with a detailed proposal.
