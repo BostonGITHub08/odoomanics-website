@@ -244,18 +244,14 @@ const ContactForm = () => {
                   <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </div>
 
-                {state.errors && state.errors.length > 0 && (
+                {state.errors && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4">
                     <p className="text-red-600 font-semibold mb-2">
-                      ⚠️ Please fix the following errors:
+                      ⚠️ Form Submission Error
                     </p>
-                    <ul className="list-disc list-inside text-red-600 text-sm space-y-1">
-                      {state.errors.map((error, index) => (
-                        <li key={index}>
-                          {error.field ? `${error.field}: ` : ''}{error.message}
-                        </li>
-                      ))}
-                    </ul>
+                    <p className="text-red-600 text-sm">
+                      Please check your form fields and try again. If the problem persists, please contact us directly.
+                    </p>
                   </div>
                 )}
 
